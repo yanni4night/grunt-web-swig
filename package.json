@@ -15,12 +15,10 @@
   "bugs": {
     "url": "https://github.com/yanni4night/grunt-web-swig"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/yanni4night/grunt-web-swig/blob/master/LICENSE-MIT"
-    }
-  ],
+  "licenses": [{
+    "type": "MIT",
+    "url": "https://github.com/yanni4night/grunt-web-swig/blob/master/LICENSE-MIT"
+  }],
   "engines": {
     "node": ">=0.10.0"
   },
@@ -38,5 +36,8 @@
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ],
+  "dependencies": {
+    "swig": "~1.4.2"
+  }
 }

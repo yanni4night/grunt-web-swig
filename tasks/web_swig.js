@@ -1,12 +1,13 @@
 /*
  * grunt-web-swig
- * https://github.com/yinyong/grunt-web-swig
+ * https://github.com/yanni4night/grunt-web-swig
  *
  * Copyright (c) 2014 yinyong
  * Licensed under the MIT license.
  */
 
 'use strict';
+var swig = require('swig');
 
 module.exports = function(grunt) {
 
@@ -16,14 +17,13 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('web_swig', 'Compile swig templates and json to htmls', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      punctuation: '.',
-      separator: ', '
+      swigOptions: {}
     });
 
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
       // Concat specified files.
-      var src = f.src.filter(function(filepath) {
+      var srcContent, src = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
@@ -31,13 +31,16 @@ module.exports = function(grunt) {
         } else {
           return true;
         }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+      });
 
-      // Handle options.
-      src += options.punctuation;
+      if (!src.length) {
+        grunt.log.warn('No src found');
+        return;
+      }
+
+      srcContent = grunt.file.read(src[0]);
+
+      swig.renderFile(src[0]);
 
       // Write the destination file.
       grunt.file.write(f.dest, src);
