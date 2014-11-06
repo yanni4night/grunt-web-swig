@@ -30,21 +30,31 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     web_swig: {
-      default_options: {
+      compile: {
         options: {
+          getData: function(tpl) {
+            return {
+              tpl: tpl
+            };
+          }
         },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+        expand: true,
+        cwd: 'test/fixtures',
+        src: ['index.tpl'],
+        dest: 'tmp',
+        ext: '.html'
       },
-      custom_options: {
+      mock: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!'
+          getData: {
+            mock: 'mark'
+          }
         },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+        expand: true,
+        cwd: 'test/fixtures',
+        src: ['mock.tpl'],
+        dest: 'tmp',
+        ext: '.html'
       }
     },
 
