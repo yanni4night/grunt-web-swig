@@ -15,10 +15,12 @@
   "bugs": {
     "url": "https://github.com/yanni4night/grunt-web-swig"
   },
-  "licenses": [{
-    "type": "MIT",
-    "url": "https://github.com/yanni4night/grunt-web-swig/blob/master/LICENSE-MIT"
-  }],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/yanni4night/grunt-web-swig/blob/master/LICENSE-MIT"
+    }
+  ],
   "engines": {
     "node": ">=0.10.0"
   },
@@ -31,7 +33,9 @@
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-jshint": "~0.9.2",
     "grunt-contrib-nodeunit": "~0.3.3",
-    "grunt-coveralls": "^1.0.0"
+    "grunt-coveralls": "~1.0.0",
+    "load-grunt-tasks": "~1.0.0",
+    "time-grunt": "~1.0.0"
   },
   "peerDependencies": {
     "grunt": "~0.4.5"
