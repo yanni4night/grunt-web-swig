@@ -22,18 +22,19 @@ var grunt = require('grunt');
 */
 
 exports.web_swig = {
-  setUp: function(done) {
-    // setup here if necessary
-    done();
-  },
-  compile: function(test) {
+    setUp: function(done) {
+        // setup here if necessary
+        done();
+    },
+    swig: function(test) {
 
-    var actual = grunt.file.read('tmp/index.html');
-    var actualmock = grunt.file.read('tmp/mock.html');
-    test.ok(!!~actual.indexOf('TITLE'), 'should get "TITLE"');
-    test.ok(!!~actualmock.indexOf('mark'), 'should get "mark"');
-    test.ok(!!~actual.indexOf('test/fixtures/index.tpl'), 'should get path');
+        var actual = grunt.file.read('tmp/swig/index.html');
+        var actualmock = grunt.file.read('tmp/swig/mock.html');
+        test.ok(!!~actual.indexOf('TITLE'), 'should get "TITLE"');
+        test.ok(!!~actualmock.indexOf('mark'), 'should get "mark"');
+        test.ok(!!~actual.indexOf('test/swig/index.tpl'),
+            'should get path');
 
-    test.done();
-  }
+        test.done();
+    }
 };

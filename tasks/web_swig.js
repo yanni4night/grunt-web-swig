@@ -30,7 +30,7 @@ module.exports = function(grunt) {
                 require('swig');
 
             if (options.useDjango) {
-                engine.congfiure(options.swigOptions);
+                var done = this.async();
             } else {
                 engine.setDefaults(options.swigOptions);
             }
@@ -42,34 +42,36 @@ module.exports = function(grunt) {
                     function(filepath) {
                         // Warn on and remove invalid source files (if nonull was set).
                         if (!grunt.file.exists(filepath)) {
-                            grunt.log.warn('Source file "' +
-                                filepath +
-                                '" not found.');
+                            grunt.log.warn('Source file "' + filepath + '" not found.');
                             return false;
                         } else {
                             return true;
                         }
                     });
-
                 if (!src.length) {
                     grunt.log.warn('Source file not found.');
                     return;
                 } else if (src.length > 1) {
-                    grunt.log.warn(
-                        'Only the first source file will be compiled.'
-                    );
+                    grunt.log.warn('Only the first source file will be compiled.');
                 }
 
                 mock = 'function' === typeof options.getData ?
                     options.getData(src[0]) : (options.getData || {});
                 // Write the destination file.
-                grunt.file.write(f.dest, engine.renderFile(src[
-                        0],
-                    mock));
+                if (options.useDjango) {
+                    engine.renderFile(src[0], mock, function(err, content) {
+                        if (err) {
+                            throw err;
+                        }
+                        grunt.file.write(f.dest, content);
+                        grunt.log.writeln('File "' + f.dest + '" created.');
+                        done();
+                    });
+                } else {
+                    grunt.file.write(f.dest, engine.renderFile(src[0], mock));
+                    grunt.log.writeln('File "' + f.dest + '" created.');
+                }
 
-                // Print a success message.
-                grunt.log.writeln('File "' + f.dest +
-                    '" created.');
             });
         });
 
