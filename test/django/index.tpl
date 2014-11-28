@@ -1,5 +1,5 @@
 
 
-{% include "./header.tpl" with focus=2 %}
+{% include "./header.tpl" with focus="focus" %}
 
 {{ names | join:"|"}}

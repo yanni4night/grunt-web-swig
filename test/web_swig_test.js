@@ -36,5 +36,11 @@ exports.web_swig = {
             'should get path');
 
         test.done();
+    },
+    django: function(test) {
+        var actual = grunt.file.read('tmp/django/index.html');
+        test.ok(!!~actual.indexOf('focus'), 'should @include sub');
+        test.ok(!!~actual.indexOf('Nick|Tim'), 'should filter a list');
+        test.done();
     }
 };
