@@ -1,6 +1,8 @@
 # grunt-web-swig
 
-> Compile swig templates and json to htmls
+> Compile swig/django templates and json to htmls
+> 
+> [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Build status][appveyor-image]][appveyor-url] [![Dependency status][david-dm-image]][david-dm-url] [![De vDependency status][david-dm-dev-image]][david-dm-dev-url] [![Built with Grunt][grunt-image]][grunt-url]
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -59,3 +61,17 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
  - 2014-11-06[11:29:58]:support [swig](http://paularmstrong.github.io/swig/)
+
+[npm-url]: https://npmjs.org/package/grunt-web-swig
+[downloads-image]: http://img.shields.io/npm/dm/grunt-web-swig.svg
+[npm-image]: http://img.shields.io/npm/v/grunt-web-swig.svg
+[travis-url]: https://travis-ci.org/yanni4night/grunt-web-swig
+[travis-image]: http://img.shields.io/travis/yanni4night/grunt-web-swig.svg
+[appveyor-image]:https://ci.appveyor.com/api/projects/status/ugbx6yhpa0hxcfgy?svg=true
+[appveyor-url]:https://ci.appveyor.com/project/yanni4night/grunt-web-swig
+[david-dm-url]:https://david-dm.org/yanni4night/grunt-web-swig
+[david-dm-image]:https://david-dm.org/yanni4night/grunt-web-swig.svg
+[david-dm-dev-url]:https://david-dm.org/yanni4night/grunt-web-swig#info=devDependencies
+[david-dm-dev-image]:https://david-dm.org/yanni4night/grunt-web-swig/dev-status.svg
+[grunt-url]:http://gruntjs.com/
+[grunt-image]: https://cdn.gruntjs.com/builtwith.png
