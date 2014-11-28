@@ -74,6 +74,11 @@ module.exports = function(grunt) {
         // Unit tests.
         nodeunit: {
             tests: ['test/*_test.js']
+        },
+        coveralls: {
+            all: {
+                src: 'coverage/lcov.info'
+            }
         }
 
     });
