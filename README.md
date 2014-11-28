@@ -56,6 +56,12 @@ Default value: `function(tpl){return {};}`
 
 Mock data for each source template file.
 
+#### options.useDjango
+Type: `Boolean`
+Default value: `false`
+
+Use [Django](https://www.djangoproject.com/)'s template syntax.Note you have to follow some instructions about python env,see <https://www.npmjs.org/package/django#install>.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
