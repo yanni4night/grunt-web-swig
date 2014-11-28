@@ -67,6 +67,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
  - 2014-11-06[11:29:58]:support [swig](http://paularmstrong.github.io/swig/)
+ - 2014-11-28[18:44:12]:support [django](https://www.djangoproject.com/)
 
 [npm-url]: https://npmjs.org/package/grunt-web-swig
 [downloads-image]: http://img.shields.io/npm/dm/grunt-web-swig.svg
