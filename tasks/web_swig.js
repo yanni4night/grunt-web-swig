@@ -26,6 +26,7 @@ module.exports = function(grunt) {
                 getData: function(file) {
                     return {};
                 },
+                //ignorePrefix:,//Django cannot identify relative path
                 useDjango: false
             });
 
@@ -55,7 +56,7 @@ module.exports = function(grunt) {
             // Iterate over all specified file groups.
             this.files.forEach(function(f) {
                 // Concat specified files.
-                var mock, srcContent, src = f.src.filter(
+                var mock, sourceFile, srcContent, src = f.src.filter(
                     function(filepath) {
                         // Warn on and remove invalid source files (if nonull was set).
                         if (!grunt.file.exists(filepath)) {
@@ -77,11 +78,17 @@ module.exports = function(grunt) {
                     grunt.log.warn('Only the first source file will be compiled.');
                 }
 
+                sourceFile = src[0];
+
+                if (options.ignorePrefix) {
+                    sourceFile = sourceFile.replace(options.ignorePrefix, '').replace(/^\/+/, '');
+                }
+
                 mock = 'function' === typeof options.getData ?
-                    options.getData(src[0]) : (options.getData || {});
+                    options.getData(sourceFile) : (options.getData || {});
                 // Write the destination file.
                 if (options.useDjango) {
-                    engine.renderFile(src[0], mock, function(err, content) {
+                    engine.renderFile(sourceFile, mock, function(err, content) {
                         if (err) {
                             throw err;
                         }

@@ -68,7 +68,11 @@ module.exports = function(grunt) {
                     useDjango: true,
                     getData: {
                         names: ['Nick', 'Tim']
-                    }
+                    },
+                    djangoOptions:{
+                        template_dirs: 'test/django/'
+                    },
+                    ignorePrefix: 'test/django/'
                 },
                 expand: true,
                 cwd: 'test/django',
