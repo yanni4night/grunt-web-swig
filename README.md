@@ -1,8 +1,9 @@
 # grunt-web-swig
 
-> Compile swig/django templates and json to htmls
+> Compile swig/django templates to html files.
 > 
-> [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Build status][appveyor-image]][appveyor-url] [![Dependency status][david-dm-image]][david-dm-url] [![De vDependency status][david-dm-dev-image]][david-dm-dev-url] [![Built with Grunt][grunt-image]][grunt-url]
+
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Build status][appveyor-image]][appveyor-url] [![Dependency status][david-dm-image]][david-dm-url] [![De vDependency status][david-dm-dev-image]][david-dm-dev-url] [![Built with Grunt][grunt-image]][grunt-url]
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -50,6 +51,12 @@ Default value: `{cache: false}`
 
 see <http://paularmstrong.github.io/swig/docs/api/#SwigOpts>.
 
+#### options.djangoOptions
+Type: `Object`
+Default value: `undefined`
+
+see <https://github.com/yanni4night/django#configurations>.
+
 #### options.getData
 Type: `Function` or `Object`
 Default value: `function(tpl){return {};}`
@@ -62,12 +69,19 @@ Default value: `false`
 
 Use [Django](https://www.djangoproject.com/)'s template syntax.Note you have to follow some instructions about python env,see <https://www.npmjs.org/package/django#install>.
 
+#### options.ignorePrefix
+Type: `String`
+Default value: `undefined`
+
+If you're using _absolute path_ in _@include_ or _@extend_,you have to define _template\_dirs_ or _loader_ for django or swig,beside that you have to define an _ignorePrefix_ to remove the prefix path returned by grunt.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
  - 2014-11-06[11:29:58]:support [swig](http://paularmstrong.github.io/swig/)
  - 2014-11-28[18:44:12]:support [django](https://www.djangoproject.com/)
+ - 2014-12-03[19:16:33]:fixed hangup;add a _djangoOptions_ to support absolute tempalte resolving path.
 
 [npm-url]: https://npmjs.org/package/grunt-web-swig
 [downloads-image]: http://img.shields.io/npm/dm/grunt-web-swig.svg
