@@ -1,4 +1,4 @@
-{%extends 'parent.tpl'%}
+{%extends './parent.tpl'%}
 
 {%block title%}TITLE{%endblock%}
 

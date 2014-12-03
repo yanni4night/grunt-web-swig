@@ -26,19 +26,33 @@ exports.web_swig = {
         // setup here if necessary
         done();
     },
-    swig: function(test) {
+    swig_relative: function(test) {
 
-        var actual = grunt.file.read('tmp/swig/index.html');
-        var actualmock = grunt.file.read('tmp/swig/mock.html');
+        var actual = grunt.file.read('tmp/swig_relative/index.html');
+        var actualmock = grunt.file.read('tmp/swig_relative/user.html');
         test.ok(!!~actual.indexOf('TITLE'), 'should get "TITLE"');
         test.ok(!!~actualmock.indexOf('mark'), 'should get "mark"');
-        test.ok(!!~actual.indexOf('test/swig/index.tpl'),
+        test.ok(!!~actual.indexOf('test/swig_relative/index.tpl'),
             'should get path');
 
         test.done();
     },
-    django: function(test) {
-        var actual = grunt.file.read('tmp/django/index.html');
+    swig_absolute: function(test) {
+        var actual = grunt.file.read('tmp/swig_absolute/index.html');
+        var actualmock = grunt.file.read('tmp/swig_absolute/mock.html');
+        test.ok(!!~actual.indexOf('absolute'), 'should get "absolute"');
+        test.ok(!!~actualmock.indexOf('swig'), 'should get "swig"');
+
+        test.done();
+    },
+    django_relative: function(test) {
+        var actual = grunt.file.read('tmp/django_relative/index.html');
+        test.ok(!!~actual.indexOf('focus'), 'should @include sub');
+        test.ok(!!~actual.indexOf('Nick|Tim'), 'should filter a list');
+        test.done();
+    },
+    django_absolute: function(test) {
+        var actual = grunt.file.read('tmp/django_absolute/index.html');
         test.ok(!!~actual.indexOf('focus'), 'should @include sub');
         test.ok(!!~actual.indexOf('Nick|Tim'), 'should filter a list');
         test.done();

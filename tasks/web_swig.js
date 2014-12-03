@@ -97,7 +97,7 @@ module.exports = function(grunt) {
                         doneOne();
                     });
                 } else {
-                    grunt.file.write(f.dest, engine.renderFile(src[0], mock));
+                    grunt.file.write(f.dest, engine.renderFile(sourceFile, mock));
                     grunt.log.writeln('File "' + f.dest + '" created.');
                 }
 

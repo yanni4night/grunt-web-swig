@@ -8,6 +8,8 @@
 
 'use strict';
 
+var swig = require('swig');
+
 module.exports = function(grunt) {
 
     require('time-grunt')(grunt);
@@ -33,52 +35,70 @@ module.exports = function(grunt) {
 
         // Configuration to be run (and then tested).
         web_swig: {
-            dynamic_data: {
+            swig_relative: {
                 options: {
                     getData: function(tpl) {
                         return {
-                            tpl: tpl
+                            tpl: tpl,
+                            mark: 'mark'
                         };
                     }
                 },
                 expand: true,
-                cwd: 'test/swig',
-                src: ['index.tpl','user.tpl'],//mutiple templates
-                dest: 'tmp/swig',
+                cwd: 'test/swig_relative',
+                src: ['index.tpl', 'user.tpl'], //mutiple templates
+                dest: 'tmp/swig_relative',
                 ext: '.html'
             },
-            static_data: {
+            swig_absolute: {
                 options: {
+                    swigOptions: {
+                        loader: swig.loaders.fs(require('path').join(__dirname, 'test/swig_absolute/'))
+                    },
+                    ignorePrefix: 'test/swig_absolute/',
                     getData: {
-                        mock: 'mark'
+                        'thing': 'swig for absolute path'
                     }
                 },
                 expand: true,
-                cwd: 'test/swig',
-                src: ['mock.tpl'],
-                dest: 'tmp/swig',
+                cwd: 'test/swig_absolute/tpls',
+                src: ['*.tpl'],
+                dest: 'tmp/swig_absolute/',
                 ext: '.html'
             },
-            empty_tpl:{
-                src:'test/index.html',
-                dest:'tmp/absence.html'
+            django_relative: {
+                options: {
+                    useDjango: true,
+                    getData: {
+                        names: ['Nick', 'Tim']
+                    }
+                },
+                expand: true,
+                cwd: 'test/django_relative',
+                src: ['index.tpl'],
+                dest: 'tmp/django_relative',
+                ext: '.html'
             },
-            django: {
+            django_absolute: {
                 options: {
                     useDjango: true,
                     getData: {
                         names: ['Nick', 'Tim']
                     },
-                    djangoOptions:{
-                        template_dirs: 'test/django/'
+                    djangoOptions: {
+                        template_dirs: 'test/django_absolute/'
                     },
-                    ignorePrefix: 'test/django/'
+                    ignorePrefix: 'test/django_absolute/'
                 },
                 expand: true,
-                cwd: 'test/django',
+                cwd: 'test/django_absolute',
                 src: ['index.tpl'],
-                dest: 'tmp/django',
+                dest: 'tmp/django_absolute',
                 ext: '.html'
+            },
+            empty_tpl: {
+                src: 'test/index.html',
+                dest: 'tmp/absence.html'
             }
         },
 
