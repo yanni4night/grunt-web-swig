@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                 },
                 expand: true,
                 cwd: 'test/swig',
-                src: ['index.tpl'],
+                src: ['index.tpl','user.tpl'],//mutiple templates
                 dest: 'tmp/swig',
                 ext: '.html'
             },
@@ -58,6 +58,10 @@ module.exports = function(grunt) {
                 src: ['mock.tpl'],
                 dest: 'tmp/swig',
                 ext: '.html'
+            },
+            empty_tpl:{
+                src:'test/index.html',
+                dest:'tmp/absence.html'
             },
             django: {
                 options: {

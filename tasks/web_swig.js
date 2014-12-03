@@ -20,20 +20,37 @@ module.exports = function(grunt) {
                 swigOptions: {
                     cache: false
                 },
+                djangoOptions: {
+                    //template_dirs:''
+                },
                 getData: function(file) {
                     return {};
                 },
                 useDjango: false
             });
 
-            var engine = options.useDjango ? require('django') :
+            var done, engine = options.useDjango ? require('django') :
                 require('swig');
 
             if (options.useDjango) {
-                var done = this.async();
+                done = this.async();
+                engine.configure(options.djangoOptions || {});
             } else {
-                engine.setDefaults(options.swigOptions);
+                engine.setDefaults(options.swigOptions || {});
             }
+
+            if (!this.files.length && done) {
+                grunt.log.warn('No file input');
+                return done();
+            }
+
+            var doneCnt = 0;
+
+            var doneOne = function() {
+                if (this.files.length === ++doneCnt && done) {
+                    done();
+                }
+            }.bind(this);
 
             // Iterate over all specified file groups.
             this.files.forEach(function(f) {
@@ -48,8 +65,13 @@ module.exports = function(grunt) {
                             return true;
                         }
                     });
+
                 if (!src.length) {
                     grunt.log.warn('Source file not found.');
+                    //Fixed hang up if no source files.
+                    if (done) {
+                        doneOne();
+                    }
                     return;
                 } else if (src.length > 1) {
                     grunt.log.warn('Only the first source file will be compiled.');
@@ -65,7 +87,7 @@ module.exports = function(grunt) {
                         }
                         grunt.file.write(f.dest, content);
                         grunt.log.writeln('File "' + f.dest + '" created.');
-                        done();
+                        doneOne();
                     });
                 } else {
                     grunt.file.write(f.dest, engine.renderFile(src[0], mock));
