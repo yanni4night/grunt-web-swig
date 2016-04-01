@@ -69,6 +69,8 @@ Default value: `false`
 
 Use [Django](https://www.djangoproject.com/)'s template syntax.Note you have to follow some instructions about python env,see <https://www.npmjs.org/package/django#install>.
 
+`1.7` is supported now.
+
 #### options.ignorePrefix
 Type: `String`
 Default value: `undefined`
@@ -79,6 +81,7 @@ If you're using _absolute path_ in _@include_ or _@extend_,you have to define _t
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+ - 2016-04-01[13:31:23]:update dependencies;support grunt 1.x
  - 2014-11-06[11:29:58]:support [swig](http://paularmstrong.github.io/swig/)
  - 2014-11-28[18:44:12]:support [django](https://www.djangoproject.com/)
  - 2014-12-03[19:16:33]:fixed hangup;add a _djangoOptions_ to support absolute tempalte resolving path.

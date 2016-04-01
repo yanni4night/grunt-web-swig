@@ -3,8 +3,10 @@ before_install:
   - sudo pip install -v Django==1.7
   - npm install -g grunt-cli
   - npm uninstall grunt # https://github.com/npm/npm/issues/3958
-node_js:
-  - "0.10" 
+node_js: 
+  - "0.12" 
+  - "4.4" 
+  - "5.x" 
 python:
   - "2.7"
 after_script:
